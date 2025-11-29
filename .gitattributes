@@ -1,0 +1,6 @@
+venv/* linguist-vendored
+
+*.html linguist-detectable=true
+*.css linguist-detectable=true
+Dockerfile linguist-language=Dockerfile
+docker-compose.yml linguist-language=YAML

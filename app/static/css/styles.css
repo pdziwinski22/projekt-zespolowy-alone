@@ -1,0 +1,179 @@
+:root {
+    --bg-gradient-start: #0f172a;
+    --bg-gradient-end: #1e293b;
+    --card-bg: #ffffff;
+    --accent: #3b82f6;
+    --accent-soft: rgba(59, 130, 246, 0.15);
+    --border-soft: rgba(148, 163, 184, 0.4);
+    --text-main: #0f172a;
+    --text-muted: #6b7280;
+}
+
+body {
+    min-height: 100vh;
+    margin: 0;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    background: radial-gradient(circle at top left, var(--bg-gradient-start), var(--bg-gradient-end));
+    color: var(--text-main);
+}
+
+.container {
+    max-width: 1100px;
+}
+
+h1 {
+    font-weight: 700;
+    letter-spacing: 0.03em;
+    color: #e5e7eb;
+    text-shadow: 0 8px 25px rgba(0, 0, 0, 0.4);
+}
+
+.card {
+    border-radius: 18px;
+    border: 1px solid var(--border-soft);
+    box-shadow:
+        0 18px 40px rgba(15, 23, 42, 0.45),
+        0 0 0 1px rgba(15, 23, 42, 0.3);
+    background: radial-gradient(circle at top left, #1e293b, #020617);
+    color: #e5e7eb;
+}
+
+.form-label {
+    font-weight: 500;
+    color: #e5e7eb;
+}
+
+.form-control,
+.form-select {
+    border-radius: 10px;
+    border: 1px solid var(--border-soft);
+    background-color: rgba(15, 23, 42, 0.9);
+    color: #e5e7eb;
+}
+
+.form-control:focus,
+.form-select:focus {
+    border-color: var(--accent);
+    box-shadow: 0 0 0 1px var(--accent-soft);
+    background-color: rgba(15, 23, 42, 0.95);
+    color: #e5e7eb;
+}
+
+.btn-primary {
+    border-radius: 999px;
+    padding-inline: 1.6rem;
+    padding-block: 0.5rem;
+    background: linear-gradient(135deg, #3b82f6, #0ea5e9);
+    border: none;
+    font-weight: 600;
+    box-shadow: 0 12px 25px rgba(56, 189, 248, 0.35);
+}
+
+.btn-primary:hover {
+    filter: brightness(1.05);
+    box-shadow: 0 18px 35px rgba(56, 189, 248, 0.5);
+}
+
+.btn-secondary {
+    border-radius: 999px;
+    padding-inline: 1.4rem;
+    padding-block: 0.5rem;
+    border: 1px solid var(--border-soft);
+    background: rgba(15, 23, 42, 0.9);
+    color: #e5e7eb;
+}
+
+.btn-secondary:hover {
+    border-color: #9ca3af;
+    background: rgba(15, 23, 42, 1);
+}
+
+.preview-image {
+    max-height: 380px;
+    width: 100%;
+    object-fit: contain;
+    border-radius: 14px;
+    border: 1px solid rgba(148, 163, 184, 0.3);
+    box-shadow: 0 14px 30px rgba(15, 23, 42, 0.6);
+    background-color: #020617;
+}
+
+h5 {
+    color: #e5e7eb;
+    font-weight: 600;
+}
+
+p {
+    color: #e5e7eb;
+}
+
+.table {
+    border-radius: 16px;
+    overflow: hidden;
+    background: rgba(15, 23, 42, 0.95);
+    color: #e5e7eb;
+}
+
+.table thead {
+    background: rgba(15, 23, 42, 0.95);
+    color: #e5e7eb;
+}
+
+.table tbody tr:nth-child(even) {
+    background-color: rgba(15, 23, 42, 0.9);
+}
+
+.table tbody tr:nth-child(odd) {
+    background-color: rgba(15, 23, 42, 0.8);
+}
+
+.table td,
+.table th {
+    border-color: rgba(51, 65, 85, 0.9);
+}
+
+.badge-effect {
+    padding: 0.25rem 0.7rem;
+    border-radius: 999px;
+    font-size: 0.75rem;
+    background-color: var(--accent-soft);
+    color: #dbeafe;
+    border: 1px solid rgba(59, 130, 246, 0.6);
+}
+
+.text-muted-soft {
+    color: var(--text-muted);
+    font-size: 0.9rem;
+}
+
+body {
+    background-color: #121212;
+    color: #fff;
+}
+
+.container {
+    max-width: 960px;
+}
+
+.preview-image {
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+}
+
+.card-body {
+    background-color: #1d1d1d;
+    color: #fff;
+}
+
+button {
+    background-color: #00aaff;
+    border-color: #00aaff;
+}
+
+button:hover {
+    background-color: #0088cc;
+}
+
+img {
+    border-radius: 10px;
+}

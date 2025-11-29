@@ -1,0 +1,14 @@
+version: "3.9"
+
+services:
+  app:
+    build: .
+    container_name: obrobka-zdjec-app
+    ports:
+      - "8000:8000"
+    env_file:
+      - .env
+    volumes:
+      - ./app/static/uploads:/app/app/static/uploads
+      - ./app/static/processed:/app/app/static/processed
+      - ./app/logs.db:/app/app/logs.db

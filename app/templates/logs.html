@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <title>Logi operacji i Koszty</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <style>
+        body { background-color: #f8f9fa; }
+        .table-container {
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+            padding: 2rem;
+        }
+        .table th {
+            background-color: #f1f5f9;
+            text-transform: uppercase;
+            font-size: 0.85rem;
+            letter-spacing: 0.05em;
+            color: #64748b;
+        }
+        .cost-badge {
+            font-family: monospace;
+            font-size: 0.95rem;
+        }
+        .total-row {
+            background-color: #1e293b !important;
+            color: white !important;
+            font-weight: bold;
+            font-size: 1.1rem;
+        }
+    </style>
+</head>
+<body class="py-4">
+
+<div class="container-fluid px-4">
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <h1><i class="bi bi-receipt me-2"></i>Logi operacji i Koszty</h1>
+        <a href="/" class="btn btn-outline-secondary rounded-pill px-4">
+            <i class="bi bi-arrow-left me-2"></i>Powrót do aplikacji
+        </a>
+    </div>
+
+    <div class="table-container">
+        <div class="table-responsive">
+            <table class="table table-hover table-bordered align-middle text-center">
+                <thead>
+                <tr>
+                    <th style="width: 10%">Data</th>
+                    <th style="width: 10%">Model</th>
+                    <th style="width: 10%">Efekt</th>
+                    <th style="width: 15%">Oryginał / Prompt</th>
+                    <th style="width: 35%">Opis AI</th>
+                    <th style="width: 10%">Tokeny (In/Out)</th>
+                    <th style="width: 10%">Koszt (USD)</th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for row in logs %}
+                    <tr>
+                        <td class="small text-muted">{{ row.created_at }}</td>
+                        <td>
+                            {% if 'gpt' in row.model %}
+                                <span class="badge bg-success bg-opacity-10 text-success border border-success">{{ row.model }}</span>
+                            {% elif 'dall-e' in row.model %}
+                                <span class="badge bg-primary bg-opacity-10 text-primary border border-primary">{{ row.model }}</span>
+                            {% else %}
+                                <span class="badge bg-secondary">{{ row.model }}</span>
+                            {% endif %}
+                        </td>
+                        <td>
+                            <span class="badge rounded-pill text-bg-light border">{{ row.effect }}</span>
+                        </td>
+                        <td class="text-start text-truncate" style="max-width: 200px;" title="{{ row.original_filename }}">
+                            {{ row.original_filename }}
+                        </td>
+                        <td class="text-start small text-muted">
+                            <div style="max-height: 80px; overflow-y: auto;">
+                                {{ row.ai_description }}
+                            </div>
+                        </td>
+                        <td>
+                            {% if row.tokens_in > 0 or row.tokens_out > 0 %}
+                                <div class="d-flex justify-content-center gap-2 small">
+                                    <span title="Input" class="text-secondary">IN: {{ row.tokens_in }}</span>
+                                    <span title="Output" class="text-dark fw-bold">OUT: {{ row.tokens_out }}</span>
+                                </div>
+                            {% else %}
+                                <span class="text-muted">-</span>
+                            {% endif %}
+                        </td>
+                        <td>
+                            <span class="cost-badge {% if row.cost > 0.01 %}text-danger fw-bold{% else %}text-muted{% endif %}">
+                                ${{ "%.4f"|format(row.cost) }}
+                            </span>
+                        </td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+                <tfoot>
+                    <tr class="total-row">
+                        <td colspan="6" class="text-end pe-4">SUMA WYDATKÓW:</td>
+                        <td>${{ "%.4f"|format(total_cost) }}</td>
+                    </tr>
+                </tfoot>
+            </table>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>
